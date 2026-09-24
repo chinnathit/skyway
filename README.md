@@ -1,6 +1,7 @@
 # ✈️ Skyway - Luxury Travel Experience
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://gsap.com/)
 [![Lucide React](https://img.shields.io/badge/Lucide_React-FF6B6B?style=for-the-badge&logo=lucide)](https://lucide.dev/)
@@ -13,12 +14,14 @@ A modern, high-end landing page for a luxury airline and travel agency. This pro
 
 - **Cinematic Scroll Animation:** Features a highly optimized GSAP `ScrollTrigger` animation where an airplane window smoothly scales up to reveal a stunning mountain landscape.
 - **Premium UI/UX:** Clean, modern, and glassmorphism-inspired design mimicking top-tier OTAs (Online Travel Agencies) to ensure a feeling of luxury and exclusivity.
-- **Interactive Booking Form:** A fully responsive flight search interface with dynamic tabs, date pickers placeholders, and sleek hover states.
+- **Interactive Booking Form:** A fully responsive flight search interface with dynamic tabs, date picker placeholders, and sleek hover states.
 - **Destinations Gallery:** A beautifully crafted grid showcasing trending destinations with smooth image scaling and translation effects on hover.
+- **Blazing Fast Performance:** Powered by [Bun](https://bun.sh/) and Next.js Turbopack for ultra-fast startup and bundling times.
 - **Fully Responsive:** Meticulously optimized for all screen sizes, from mobile phones to ultra-wide desktop monitors.
 
 ## 🛠️ Tech Stack
 
+- **Runtime & Package Manager:** [Bun](https://bun.sh/) (Recommended) / Node.js
 - **Framework:** [Next.js](https://nextjs.org/) (App Router)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animations:** [GSAP](https://gsap.com/) (GreenSock Animation Platform) & `@gsap/react`
@@ -29,11 +32,16 @@ A modern, high-end landing page for a luxury airline and travel agency. This pro
 
 ## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+Follow these instructions to get a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
-Make sure you have Node.js installed (v18 or higher is recommended) along with a package manager like `npm`, `yarn`, `pnpm`, or `bun`.
+We recommend using **[Bun](https://bun.sh/)** for the fastest developer experience. Alternatively, Node.js (v18+) with npm/yarn/pnpm is also fully supported.
+
+```bash
+# Install Bun (macOS & Linux)
+curl -fsSL https://bun.sh/install | bash
+```
 
 ### Installation
 
@@ -45,24 +53,36 @@ Make sure you have Node.js installed (v18 or higher is recommended) along with a
 
 2. **Install dependencies:**
    ```bash
+   bun install
+   # or
    npm install
    # or
-   yarn install
-   # or
    pnpm install
+   # or
+   yarn install
    ```
 
 3. **Run the development server:**
    ```bash
+   bun dev
+   # or
+   bun run dev
+   # or
    npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
    ```
 
 4. **View the application:**
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+### Production Build
+
+```bash
+# Build the application
+bun run build
+
+# Start the production server
+bun run start
+```
 
 ---
 
@@ -75,6 +95,7 @@ skyway/
 │   ├── page.tsx         # Main landing page (Hero, Booking Form, Destinations)
 │   └── globals.css      # Global Tailwind styles
 ├── public/              # Static assets (fonts, icons, raw images)
+├── bun.lock             # Bun lockfile
 ├── tailwind.config.ts   # Tailwind CSS configuration
 └── next.config.ts       # Next.js configuration
 ```
