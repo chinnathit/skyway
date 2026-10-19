@@ -1,266 +1,43 @@
-'use client';
+import Image from "next/image";
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Check, ChevronRight, Compass, Globe2, Headphones, Leaf, MoveUpRight, Plane, ShieldCheck, Sparkles, Sunrise, Utensils } from "lucide-react";
+import { BookingWidget } from "@/components/booking-widget";
+import { SiteHeader } from "@/components/site-header";
+import { Button } from "@/components/ui/button";
 
-import { useRef } from 'react';
-import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+const destinations = [
+  { name: "Kyoto", country: "JAPAN", image: "kyoto", alt: "Traditional Japanese street and pagoda in Kyoto", tag: "A little culture", fare: "12,900", code: "KIX", detail: "Quiet temples. A thousand discoveries." },
+  { name: "Bali", country: "INDONESIA", image: "bali", alt: "Lush tropical landscape and temple in Bali", tag: "A slower rhythm", fare: "6,490", code: "DPS", detail: "Find your own kind of paradise." },
+  { name: "Tromsø", country: "NORWAY", image: "swiss", alt: "Northern lights illuminating a Norwegian mountain landscape", tag: "Something extraordinary", fare: "29,900", code: "TOS", detail: "Some things are worth looking up for." },
+];
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
-  const textBlockARef = useRef<HTMLDivElement>(null);
-  const textBlockBRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        pin: true,
-        scrub: 1,
-        start: 'top top',
-        end: '+=200%',
-      },
-    });
-    tl.addLabel("start")
-      .to(
-        textBlockARef.current,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.3,
-          ease: 'power1.in',
-        },
-        "start"
-      )
-      .to(
-        maskRef.current,
-        {
-          scale: 80,
-          transformOrigin: 'center center',
-          ease: 'none',
-          duration: 4, 
-        },
-        "start"
-      )
-      .to(
-        textBlockBRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          pointerEvents: 'auto', 
-          ease: 'power2.out',
-        },
-        "start+=0.8"
-      );
-  }, { scope: containerRef });
-
   return (
-    <div className="relative w-full overflow-hidden bg-slate-900 text-white font-sans selection:bg-slate-800">
-      
-      <header className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[2px]">
-        <div className="text-2xl font-bold tracking-[0.25em] text-white cursor-pointer hover:text-white/80 transition-colors">
-          SKYWAY
+    <main>
+      <SiteHeader />
+      <section className="hero" aria-labelledby="hero-title">
+        <Image src="/images/hero.jpg" alt="Sunlit mountain peaks rising above a sea of clouds" fill priority sizes="100vw" className="hero-image" />
+        <div className="hero-shade" />
+        <div className="hero-content page-width">
+          <div className="eyebrow hero-eyebrow"><span className="status-dot" /> THE WORLD IS STILL FULL OF WONDER</div>
+          <h1 id="hero-title">Go a little<br />further.<br /><em>Feel a little more.</em></h1>
+          <p>For the places you’ve dreamed of.<br />And the moments you never saw coming.</p>
+          <Button asChild className="hero-button"><a href="#destinations">Find your somewhere <ArrowUpRight /></a></Button>
+          <div className="hero-caption"><span className="caption-line" /><span>ABOVE THE EVERYDAY<br /><strong>The Alps, Switzerland</strong></span></div>
         </div>
-        <nav className="hidden md:flex gap-10 text-xs uppercase tracking-[0.15em] font-semibold">
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
-            Experience
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
-          </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
-            Fleet
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
-          </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
-            Destinations
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
-          </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
-            Book
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
-          </a>
-        </nav>
-      </header>
-
-      <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
-        
-        <div className="absolute inset-0 z-10">
-          <Image
-            src="/images/mountain-bg.webp"
-            alt="Majestic Mountains"
-            fill
-            className="object-cover"
-            priority
-          />
-          
-          <div className="absolute inset-0 bg-black/30" />
-        </div>
-
-        <div
-          ref={maskRef}
-          className="absolute inset-0 z-20 pointer-events-none will-change-transform"
-        >
-          <Image
-            src="/images/window-mask.webp"
-            alt="Airplane Window"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-
-        <div
-          ref={textBlockARef}
-          className="absolute bottom-12 right-12 md:right-24 z-30 flex flex-col items-end text-right max-w-sm pointer-events-none"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-wide text-white drop-shadow-xl">
-            The Journey Begins
-          </h2>
-          <p className="mt-2 text-sm md:text-base font-light text-zinc-200 drop-shadow-md">
-            Your window to a world of stunning destinations and endless possibilities.
-          </p>
-        </div>
-
-        <div
-          ref={textBlockBRef}
-          className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none translate-y-[50px]"
-        >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white drop-shadow-2xl">
-            Navigating the Skies
-          </h1>
-          <p className="mt-6 text-lg md:text-xl font-light text-zinc-100 drop-shadow-lg tracking-wide max-w-2xl px-4">
-            Experience the ultimate comfort and luxury on your next journey around the globe.
-          </p>
-          <div className="mt-10 flex gap-6">
-            <button className="px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b5952f] hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg shadow-[#d4af37]/40">
-              Book a Flight
-            </button>
-            <button className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg">
-              Destinations
-            </button>
-          </div>
-        </div>
+        <a href="#book" className="scroll-cue"><ArrowDown size={16} /><span>A new perspective awaits</span></a>
+        <span className="hero-index">01 <span>/ 03</span></span>
       </section>
-
-      <section className="relative z-40 w-full bg-slate-900 pb-32">
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative -top-16 md:-top-24">
-          <div className="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 flex flex-col gap-6 text-slate-900">
-            
-            <div className="flex items-center gap-8 border-b border-slate-100 pb-4 overflow-x-auto whitespace-nowrap">
-              <button className="text-sm font-bold border-b-2 border-slate-900 pb-4 -mb-4 text-slate-900 tracking-wide">
-                Book a Flight
-              </button>
-              <button className="text-sm font-semibold text-slate-400 hover:text-slate-600 pb-4 -mb-4 transition-colors tracking-wide">
-                Manage Booking
-              </button>
-              <button className="text-sm font-semibold text-slate-400 hover:text-slate-600 pb-4 -mb-4 transition-colors tracking-wide">
-                Check In
-              </button>
-              <button className="text-sm font-semibold text-slate-400 hover:text-slate-600 pb-4 -mb-4 transition-colors tracking-wide">
-                Flight Status
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-2">
-              
-              <div className="flex flex-col gap-1.5 lg:col-span-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">
-                  From
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="New York (JFK)"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-shadow text-slate-900 placeholder-slate-400 font-semibold"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5 lg:col-span-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">
-                  To
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Paris (CDG)"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-shadow text-slate-900 placeholder-slate-400 font-semibold"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5 lg:col-span-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">
-                  Depart - Return
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Oct 15 - Oct 22"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-shadow text-slate-900 placeholder-slate-400 font-semibold"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5 lg:col-span-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">
-                  Travelers
-                </label>
-                <div className="relative">
-                  <select className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-shadow text-slate-900 font-semibold appearance-none cursor-pointer">
-                    <option>1 Adult, First Class</option>
-                    <option>2 Adults, First Class</option>
-                    <option>1 Adult, Business</option>
-                  </select>
-                  
-                  <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                    <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col justify-end lg:col-span-1">
-                <button className="group w-full h-[52px] bg-gradient-to-r from-[#d4af37] to-[#b5952f] hover:from-[#c29f2f] hover:to-[#a38528] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#d4af37]/40 flex items-center justify-center gap-2 hover:scale-[1.02]">
-                  <span>Find Flights</span>
-                  <svg
-                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
-          <div className="inline-block px-5 py-2 mb-8 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37]">
-            Exclusive Destinations
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
-            Beyond First Class.
-          </h2>
-          <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-            Experience the world&apos;s most extraordinary locations with unparalleled luxury. From private island retreats to majestic alpine chalets, we curate exceptional travel experiences for the discerning few.
-          </p>
-        </div>
+      <BookingWidget />
+      <div className="reassurance page-width"><span><ShieldCheck />Thoughtful travel, from takeoff to touchdown</span><span><Check />Transparent fares</span><span><Headphones />A real person, whenever you need</span><span className="demo-pill">A concept airline. A real sense of possibility.</span></div>
+      <section id="destinations" className="destinations section-space page-width">
+        <div className="section-heading"><div><p className="eyebrow"><span className="tiny-line" /> YOUR NEXT CHAPTER</p><h2>Somewhere new.<br /><em>Something you.</em></h2></div><div className="heading-aside"><p>A change of scenery. A different perspective.<br />Where will your curiosity take you?</p><a className="text-link" href="#destination-list">Explore the collection <ArrowUpRight size={17} /></a></div></div>
+        <div id="destination-list" className="destination-grid">{destinations.map(destination => <a href="#book" key={destination.name} className="destination-card"><div className="destination-image"><Image src={`/images/${destination.image}.jpg`} alt={destination.alt} fill sizes="(max-width: 640px) 95vw, (max-width: 900px) 46vw, 31vw" /><span className="destination-tag"><Compass size={12} />{destination.tag}</span><span className="destination-arrow"><ArrowUpRight size={21} /></span><div className="destination-name"><span>{destination.country}</span><h3>{destination.name}</h3></div></div><div className="destination-details"><div><p>{destination.detail}</p><span>Bangkok <ArrowRight size={11} /> {destination.code} <span className="route-dot">·</span> Return</span></div><div className="destination-price"><span>from</span><strong>฿{destination.fare}</strong></div></div></a>)}</div>
+        <p className="fare-note">Illustrative return fares per person in Economy. Destinations, routes and prices are demo content.</p>
       </section>
-    </div>
+      <section id="experience" className="experience-section"><div className="experience-inner page-width"><div className="experience-visual"><Image src="/images/cabin.jpg" alt="A thoughtfully prepared restaurant setting with warm lighting" fill sizes="(max-width: 800px) 100vw, 50vw" /><div className="experience-photo-note"><Utensils size={17} /><span>A TASTE OF THE JOURNEY<br /><strong>Good things come thoughtfully prepared.</strong></span></div><div className="floating-stamp"><Sparkles size={23} /><span>LITTLE DETAILS.<br />A BIG DIFFERENCE.</span></div></div><div className="experience-copy"><p className="eyebrow"><span className="tiny-line" /> THE SKYWAY WAY</p><h2>The journey is<br />part of <em>the joy.</em></h2><p>Travel should feel good long before you arrive. A warm welcome, room to settle in, and the little details that make a long way feel like no time at all.</p><div className="experience-benefits"><div><Sunrise /><span><strong>A little more room to unwind</strong><small>Thoughtful spaces. Your own pace.</small></span></div><div><Utensils /><span><strong>Flavors worth slowing down for</strong><small>Seasonal inspiration, served with care.</small></span></div><div><Headphones /><span><strong>People who care about your journey</strong><small>A human touch, every step of the way.</small></span></div></div><Button asChild variant="outline"><a href="#journeys">Step inside the experience <ArrowUpRight /></a></Button></div></div></section>
+      <section id="journeys" className="journal section-space page-width"><div className="section-heading"><div><p className="eyebrow"><span className="tiny-line" /> A WINDOW TO THE WORLD</p><h2>Bring your <em>curiosity.</em></h2></div><p className="journal-intro">A few good reasons to take the scenic route.<br />Stories to inspire your next chapter.</p></div><div className="journal-grid"><a href="#destinations" className="journal-feature"><Image src="/images/mountain-bg.webp" alt="A sweeping mountain vista for a scenic escape" fill sizes="(max-width: 700px) 100vw, 60vw" /><div className="journal-overlay" /><div className="journal-feature-copy"><span className="eyebrow">THE ART OF GETTING AWAY · 5 MIN READ</span><h3>Take the long way.<br />It’s usually the beautiful one.</h3><span className="text-link">Find your inspiration <ArrowUpRight size={17} /></span></div></a><div className="journal-side"><div className="journal-number">01 / FIELD NOTES</div><Leaf size={31} strokeWidth={1.2} /><h3>A lighter footprint.<br />A deeper connection.</h3><p>Stay a little longer. Explore a little closer. Discover a more thoughtful way to see the places you love.</p><a href="#experience" className="text-link">Travel with intention <ArrowUpRight size={17} /></a><div className="journal-side-bottom"><Globe2 size={15} /> GOOD JOURNEYS START WITH SMALL CHOICES</div></div></div></section>
+      <section className="closing-banner page-width"><div className="orbit-art" aria-hidden="true"><Globe2 /><Plane /></div><div><p className="eyebrow">THERE’S A WHOLE WORLD OUT THERE</p><h2>Your next story<br />starts with <em>a little yes.</em></h2></div><Button asChild><a href="#book">Let’s go somewhere <ArrowUpRight /></a></Button><ArrowDownRight className="closing-arrow" aria-hidden="true" /></section>
+      <footer className="footer page-width"><div className="footer-top"><div><a className="wordmark" href="#"><MoveUpRight strokeWidth={2.6} /><span>skyway.</span></a><p>A little further. A little closer to what matters.</p></div><a href="#book" className="text-link">Your next journey <ChevronRight size={16} /></a></div><div className="footer-bottom"><p>© {new Date().getFullYear()} Skyway. Made for the wonder of it.</p><span>Independent design concept <span className="route-dot">·</span> Demo website</span><a href="#">Back to top <ArrowUpRight size={13} /></a></div></footer>
+    </main>
   );
 }
