@@ -1,0 +1,70 @@
+/* Word masks keep responsive wrapping intact; readable text stays in the DOM. */
+.sw-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.14em 0.08em;
+  margin: -0.14em -0.08em;
+}
+.sw-reveal-word {
+  display: inline-block;
+  transform-origin: left bottom;
+}
+[data-kinetic-intro] h2 {
+  background: none;
+  color: var(--skyway-text);
+}
+[data-kinetic-intro] .sw-reveal-word {
+  background: linear-gradient(130deg, #fafaf7 25%, #fafaf780);
+  background-clip: text;
+  color: transparent;
+}
+
+.sw-rolling-letter {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.15;
+}
+.sw-rolling-track {
+  display: block;
+  position: relative;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--letter-index) * 18ms);
+}
+.sw-rolling-copy {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.sw-explorer-list button:is(:hover, :focus-visible) .sw-rolling-track,
+[data-slot="button"]:is(:hover, :focus-visible) .sw-rolling-track {
+  transform: translateY(-100%);
+}
+.sw-preview-text-enter {
+  animation: sw-preview-text-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.sw-explorer-details.sw-preview-text-enter {
+  animation-delay: 0.07s;
+}
+@keyframes sw-preview-text-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-rolling-track {
+    transition: none !important;
+    transform: none !important;
+  }
+  .sw-preview-text-enter {
+    animation: none !important;
+  }
+}
