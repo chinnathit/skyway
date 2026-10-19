@@ -25,7 +25,7 @@ function TabsTrigger({
   return (
     <TabsPrimitive.Trigger
       className={cn(
-        "inline-flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 pb-4 text-sm font-semibold text-slate-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--skyway-gold)] data-[state=active]:border-[var(--skyway-gold)] data-[state=active]:text-[var(--skyway-gold)]",
+        "inline-flex shrink-0 items-center gap-2 border-b-2 border-transparent px-1 pb-4 text-sm font-semibold text-[var(--skyway-text-muted)] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--skyway-accent)] data-[state=active]:border-[var(--skyway-accent)] data-[state=active]:text-[var(--skyway-accent)]",
         className,
       )}
       {...props}
@@ -39,7 +39,7 @@ function TabsContent({
   return (
     <TabsPrimitive.Content
       className={cn(
-        "pt-6 focus-visible:outline-2 focus-visible:outline-[var(--skyway-gold)]",
+        "pt-6 focus-visible:outline-2 focus-visible:outline-[var(--skyway-accent)]",
         className,
       )}
       {...props}
