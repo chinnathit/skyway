@@ -5,6 +5,8 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { TravelSections } from '@/components/travel-sections';
+import './travel.css';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -69,19 +71,19 @@ export default function Home() {
           SKYWAY
         </div>
         <nav className="hidden md:flex gap-10 text-xs uppercase tracking-[0.15em] font-semibold">
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
+          <a href="#experience" className="text-zinc-200 hover:text-white transition-colors relative group">
             Experience
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
           </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
+          <a href="#fleet" className="text-zinc-200 hover:text-white transition-colors relative group">
             Fleet
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
           </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
+          <a href="#destinations" className="text-zinc-200 hover:text-white transition-colors relative group">
             Destinations
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
           </a>
-          <a href="#" className="text-zinc-200 hover:text-white transition-colors relative group">
+          <a href="#book" className="text-zinc-200 hover:text-white transition-colors relative group">
             Book
             <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
           </a>
@@ -150,7 +152,7 @@ export default function Home() {
 
       <section className="relative z-40 w-full bg-slate-900 pb-32">
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative -top-16 md:-top-24">
+        <div id="book" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative -top-16 md:-top-24">
           <div className="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 flex flex-col gap-6 text-slate-900">
             
             <div className="flex items-center gap-8 border-b border-slate-100 pb-4 overflow-x-auto whitespace-nowrap">
@@ -249,7 +251,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
+        <div id="destinations" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
           <div className="inline-block px-5 py-2 mb-8 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37]">
             Exclusive Destinations
           </div>
@@ -260,6 +262,8 @@ export default function Home() {
             Experience the world&apos;s most extraordinary locations with unparalleled luxury. From private island retreats to majestic alpine chalets, we curate exceptional travel experiences for the discerning few.
           </p>
         </div>
+
+        <TravelSections />
       </section>
     </div>
   );
