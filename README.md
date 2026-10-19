@@ -1,123 +1,62 @@
-# ✈️ Skyway - Luxury Travel Experience
+# Skyway
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://gsap.com/)
-[![Lucide React](https://img.shields.io/badge/Lucide_React-FF6B6B?style=for-the-badge&logo=lucide)](https://lucide.dev/)
+An airline landing page demo with a quiet, editorial feel: warm whites, forest green, destination photography, and Lucide icons. Built to be a useful starting point for a travel website.
 
-A modern, high-end landing page for a luxury airline and travel agency. This project focuses on delivering a premium user experience (UX) and stunning user interface (UI) with a signature cinematic scroll-reveal animation.
+This is a fictional airline. Routes, fares, and service descriptions are illustrative. The site does not sell tickets, process payments, or retrieve live flight information.
 
----
+## Run locally
 
-## ✨ Key Features
-
-- **Cinematic Scroll Animation:** Features a highly optimized GSAP `ScrollTrigger` animation where an airplane window smoothly scales up to reveal a stunning mountain landscape.
-- **Premium UI/UX:** Clean, modern, and glassmorphism-inspired design mimicking top-tier OTAs (Online Travel Agencies) to ensure a feeling of luxury and exclusivity.
-- **Interactive Booking Form:** A fully responsive flight search interface with dynamic tabs, date picker placeholders, and sleek hover states.
-- **Destinations Gallery:** A beautifully crafted grid showcasing trending destinations with smooth image scaling and translation effects on hover.
-- **Blazing Fast Performance:** Powered by [Bun](https://bun.sh/) and Next.js Turbopack for ultra-fast startup and bundling times.
-- **Fully Responsive:** Meticulously optimized for all screen sizes, from mobile phones to ultra-wide desktop monitors.
-
-## 🛠️ Tech Stack
-
-- **Runtime & Package Manager:** [Bun](https://bun.sh/) (Recommended) / Node.js
-- **Framework:** [Next.js](https://nextjs.org/) (App Router)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animations:** [GSAP](https://gsap.com/) (GreenSock Animation Platform) & `@gsap/react`
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Fonts:** Geist Sans & Geist Mono (via Next.js local fonts)
-
----
-
-## 🚀 Getting Started
-
-Follow these instructions to get a copy of the project up and running on your local machine.
-
-### Prerequisites
-
-We recommend using **[Bun](https://bun.sh/)** for the fastest developer experience. Alternatively, Node.js (v18+) with npm/yarn/pnpm is also fully supported.
+Use Node.js 20.9 or newer.
 
 ```bash
-# Install Bun (macOS & Linux)
-curl -fsSL https://bun.sh/install | bash
+npm ci
+npm run dev
 ```
 
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/chinnathit/skyway.git
-   cd skyway
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   bun install
-   # or
-   npm install
-   # or
-   pnpm install
-   # or
-   yarn install
-   ```
-
-3. **Run the development server:**
-   ```bash
-   bun dev
-   # or
-   bun run dev
-   # or
-   npm run dev
-   ```
-
-4. **View the application:**
-   Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-### Production Build
+Open http://localhost:3000. Bun is also supported: run `bun install` and `bun run dev`.
 
 ```bash
-# Build the application
-bun run build
-
-# Start the production server
-bun run start
+npm run lint
+npm run build
+npm run start
 ```
 
----
+## Stack
 
-## 📂 Project Structure
+- Next.js 16 App Router, React 19, TypeScript
+- Tailwind CSS 4 and custom responsive styles
+- shadcn/ui-style Button and Tabs, using Radix primitives
+- Lucide React icons
+- Next Image with locally stored photography
 
-```text
-skyway/
-├── app/
-│   ├── layout.tsx       # Root layout including global fonts and metadata
-│   ├── page.tsx         # Main landing page (Hero, Booking Form, Destinations)
-│   └── globals.css      # Global Tailwind styles
-├── public/              # Static assets (fonts, icons, raw images)
-├── bun.lock             # Bun lockfile
-├── tailwind.config.ts   # Tailwind CSS configuration
-└── next.config.ts       # Next.js configuration
-```
+The UI components live in the repository so their styling and behavior can be changed directly. `components.json` provides the shadcn configuration for adding more components.
 
-## 🎨 Customization
+## Where to make changes
 
-### Changing the Hero Image
-To replace the hero landscape image revealed through the airplane window, locate the `gsap-landscape.jpg` reference in `app/page.tsx` and replace it with your own high-resolution URL or local asset.
+| File                            | Purpose                                                   |
+| ------------------------------- | --------------------------------------------------------- |
+| `app/page.tsx`                  | Hero, destinations, experience, journal, and footer       |
+| `app/globals.css`               | Colors, layout, breakpoints, hover states, reduced motion |
+| `app/layout.tsx`                | Page title, description, and fonts                        |
+| `components/site-header.tsx`    | Navigation and mobile menu                                |
+| `components/booking-widget.tsx` | Booking tabs, airports, date, cabin, and demo feedback    |
+| `components/ui/`                | Reusable Button and accessible Tabs                       |
+| `public/images/`                | Local image assets                                        |
 
-### Adjusting the GSAP Animation
-The core animation logic is wrapped inside the `useGSAP` hook in `app/page.tsx`. 
-- **Scroll Length:** You can adjust the `end: "+=3000"` parameter in the ScrollTrigger configuration to make the scroll faster or slower.
-- **Scale:** Modify the `scale: 45` value to determine how large the window should grow to cover the screen.
+Edit the `destinations` array in `app/page.tsx` to change destination cards. Replace the image files or update the corresponding image paths. The new photographs are downloaded from Unsplash; source photo IDs are listed below.
 
-### Editing Destinations
-The destinations grid is hardcoded for demonstration purposes in `app/page.tsx`. You can easily extract it into a separate component and map over an array of destination objects containing `{ title, country, price, image, isTrending }`.
+| Asset        | Unsplash photo ID                  |
+| ------------ | ---------------------------------- |
+| `hero.jpg`   | `photo-1464822759023-fed622ff2c3b` |
+| `kyoto.jpg`  | `photo-1493976040374-85c8e12f0c0e` |
+| `bali.jpg`   | `photo-1537996194471-e657df975ab4` |
+| `tromso.jpg` | `photo-1531366936337-7c912a4589a7` |
+| `cabin.jpg`  | `photo-1540339832862-474599807836` |
 
----
+## Demo interactions
 
-## 📄 License
+The booking widget supports keyboard-accessible tabs, airport selection and swapping, one-way/return choices, a departure date, and traveler/cabin presets. Submission shows an inline demo message. Manage booking, check-in, and flight status accept example input and explain that live services are not connected. Navigation links lead to the relevant page sections.
 
-This project is open-source and available under the [MIT License](LICENSE). Feel free to fork, modify, and use it for your own luxury travel projects!
+To add real booking, replace the form submit handlers with your API integration and introduce return dates, separate passenger/cabin controls, validation, availability, and pricing. Keep credentials and payment processing on the server.
 
----
-*Crafted with ❤️ for modern web experiences.*
+Animations respect `prefers-reduced-motion`. The layout adapts to mobile, tablet, and desktop screens.

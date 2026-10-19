@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Skyway — Go a little further",
-  description: "A thoughtful airline website concept. Discover inspiring destinations, a warmer way to travel, and a little more wonder along the way.",
+  description:
+    "A thoughtful airline website concept. Discover inspiring destinations, a warmer way to travel, and a little more wonder along the way.",
 };
 
 export default function RootLayout({
