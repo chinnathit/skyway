@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { RevealText, RollingText } from "@/components/animated-text";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -43,17 +44,29 @@ export function TravelSections() {
       gsap.registerPlugin(ScrollTrigger);
       const media = gsap.matchMedia();
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        const headings = sectionsRef.current?.querySelectorAll(
-          ".sw-section-heading, .sw-experience-copy, .sw-promises > div, .sw-cta > div:not(.sw-cta-orbit)",
+        const labels = sectionsRef.current?.querySelectorAll(
+          ".sw-label, .sw-collection-heading",
         );
-        headings?.forEach((heading) => {
-          gsap.from(heading, {
-            y: 30,
+        labels?.forEach((label) => {
+          gsap.from(label, {
+            x: -16,
             opacity: 0,
-            filter: "blur(6px)",
-            duration: 0.85,
+            duration: 0.7,
             ease: "power2.out",
-            scrollTrigger: { trigger: heading, start: "top 92%", once: true },
+            scrollTrigger: { trigger: label, start: "top 92%", once: true },
+          });
+        });
+        const groups = sectionsRef.current?.querySelectorAll(
+          ".sw-benefits, .sw-promises, .sw-footer-main",
+        );
+        groups?.forEach((group) => {
+          gsap.from(group.children, {
+            y: 22,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: { trigger: group, start: "top 90%", once: true },
           });
         });
         gsap.fromTo(
@@ -131,16 +144,16 @@ export function TravelSections() {
           </div>
           <div className="sw-experience-copy">
             <SectionLabel>THE SKYWAY EXPERIENCE</SectionLabel>
-            <h2>
+            <RevealText>
               Not just a flight.
               <br />
               <em>A feeling.</em>
-            </h2>
-            <p>
+            </RevealText>
+            <RevealText as="p" effect="read">
               The quiet before takeoff. A warm welcome. Your favorite view, from
               somewhere entirely new. We believe the little details are what
               make a journey extraordinary.
-            </p>
+            </RevealText>
             <div className="sw-benefits">
               <div>
                 <Sunrise />
@@ -166,7 +179,7 @@ export function TravelSections() {
             </div>
             <Button asChild variant="outline" className="sw-outline-button">
               <a href="#fleet">
-                Discover your cabin <ArrowUpRight />
+                <RollingText text="Discover your cabin" /> <ArrowUpRight />
               </a>
             </Button>
           </div>
@@ -177,11 +190,11 @@ export function TravelSections() {
         <div className="sw-section-heading">
           <div>
             <SectionLabel>EXCEPTIONAL AT EVERY ALTITUDE</SectionLabel>
-            <h2>
+            <RevealText>
               A space for
               <br />
               <em>your kind of journey.</em>
-            </h2>
+            </RevealText>
           </div>
           <p>
             Whether you’re switching off or setting out,
@@ -217,8 +230,10 @@ export function TravelSections() {
                 </div>
                 <div className="sw-cabin-copy">
                   <p className="sw-label">{cabin.note}</p>
-                  <h3>{cabin.title}</h3>
-                  <p>{cabin.description}</p>
+                  <RevealText as="h3">{cabin.title}</RevealText>
+                  <RevealText as="p" delay={0.1}>
+                    {cabin.description}
+                  </RevealText>
                   <ul>
                     {cabin.details.map((detail) => (
                       <li key={detail}>
@@ -274,11 +289,11 @@ export function TravelSections() {
         <div className="sw-section-heading">
           <div>
             <SectionLabel>THE SKYWAY JOURNAL</SectionLabel>
-            <h2 id="journal-heading">
+            <RevealText id="journal-heading">
               Leave the ordinary
               <br />
               <em>somewhere behind.</em>
-            </h2>
+            </RevealText>
           </div>
           <span className="sw-journal-note">
             <Compass size={18} /> A little inspiration for the way ahead.
@@ -297,11 +312,11 @@ export function TravelSections() {
           </span>
           <div className="sw-journal-copy">
             <p>SOME JOURNEYS CHANGE THE WAY YOU SEE.</p>
-            <h3>
+            <RevealText as="h3">
               Take the window seat.
               <br />
               Let the world surprise you.
-            </h3>
+            </RevealText>
             <span className="sw-link">
               Explore the destination collection <ArrowUpRight size={17} />
             </span>
@@ -315,11 +330,11 @@ export function TravelSections() {
       <section className="sw-container sw-faq">
         <div>
           <SectionLabel>A FEW THINGS TO KNOW</SectionLabel>
-          <h2>
+          <RevealText>
             A clearer view.
             <br />
             <em>Before you go.</em>
-          </h2>
+          </RevealText>
           <p>A little context for exploring this concept.</p>
         </div>
         <div className="sw-faq-items">
@@ -342,15 +357,15 @@ export function TravelSections() {
         </div>
         <div>
           <SectionLabel>YOUR NEXT CHAPTER IS CALLING</SectionLabel>
-          <h2>
+          <RevealText>
             The world awaits.
             <br />
             <em>Make it your own.</em>
-          </h2>
+          </RevealText>
         </div>
         <Button asChild className="sw-accent-button">
           <a href="#book">
-            Begin your journey <ArrowUpRight />
+            <RollingText text="Begin your journey" /> <ArrowUpRight />
           </a>
         </Button>
         <MoveUpRight className="sw-cta-decoration" aria-hidden="true" />

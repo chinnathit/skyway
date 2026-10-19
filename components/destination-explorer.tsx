@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { RollingText } from "@/components/animated-text";
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import { destinations } from "@/lib/travel-content";
 
@@ -23,7 +24,7 @@ export function DestinationExplorer() {
             onClick={() => setSelected(index)}
           >
             <span className="sw-explorer-index">0{index + 1}</span>
-            <span className="sw-explorer-name">{item.city}</span>
+            <RollingText className="sw-explorer-name" text={item.city} />
             <ArrowUpRight aria-hidden="true" />
             <span className="sw-explorer-country">{item.country}</span>
           </button>
@@ -54,7 +55,10 @@ export function DestinationExplorer() {
           <span className="sw-destination-category">
             {destination.category}
           </span>
-          <div className="sw-explorer-image-label">
+          <div
+            className="sw-explorer-image-label sw-preview-text-enter"
+            key={destination.city}
+          >
             <span>{destination.country}</span>
             <strong>{destination.city}</strong>
           </div>
@@ -66,7 +70,10 @@ export function DestinationExplorer() {
             <ArrowUpRight />
           </a>
         </div>
-        <div className="sw-explorer-details">
+        <div
+          className="sw-explorer-details sw-preview-text-enter"
+          key={`details-${destination.city}`}
+        >
           <div>
             <p>{destination.description}</p>
             <span>

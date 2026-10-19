@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { TravelSections } from '@/components/travel-sections';
 import { MobileNavigation } from '@/components/mobile-navigation';
+import { RevealText } from '@/components/animated-text';
 import './travel.css';
 import './kinetic.css';
 if (typeof window !== 'undefined') {
@@ -258,9 +259,9 @@ export default function Home() {
           <div className="inline-block px-5 py-2 mb-8 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] text-[var(--skyway-accent)]">
             Exclusive Destinations
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
+          <RevealText className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
             Beyond First Class.
-          </h2>
+          </RevealText>
           <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
             Experience the world&apos;s most extraordinary locations with unparalleled luxury. From private island retreats to majestic alpine chalets, we curate exceptional travel experiences for the discerning few.
           </p>

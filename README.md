@@ -32,11 +32,14 @@ npm run start
 | `app/layout.tsx` | Local fonts and page metadata |
 | `components/travel-sections.tsx` | Experience, cabin tabs, journal, FAQ, and footer; scoped scroll animations |
 | `components/destination-explorer.tsx` | Destination image previews for hover, keyboard, and touch |
+| `components/animated-text.tsx` | Reusable word reveals, scroll reading, and rolling hover text |
 | `components/mobile-navigation.tsx` | Mobile menu with outside-click and Escape dismissal |
 | `components/ui/` | Editable shadcn/ui-style Button and Radix Tabs |
 | `lib/travel-content.ts` | Destination, fare, cabin, and FAQ content |
 
 `components.json` configures shadcn components. The opening timeline remains independent of the new section animations: its pinned scroll, window scale, fade timing, and original images are preserved. Hero styling follows the shared theme.
+
+Section headings reveal word by word as they enter the viewport. The experience paragraph brightens with scroll progress, destination names and selected buttons roll their letters on hover or keyboard focus, and cabin headings replay when their tab is mounted. Split text preserves natural wrapping, emphasis, and a single readable copy for assistive technology.
 
 The destination selector supports focus and touch as well as hover. Cabin tabs use Radix keyboard navigation, and FAQs use native disclosure elements. New scroll animations and image transitions respect reduced-motion preferences; the original opening animation retains its existing behavior.
 
