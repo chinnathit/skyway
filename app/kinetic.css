@@ -1,0 +1,277 @@
+/* The reference's typography and palette applied around the original hero animation. */
+.skyway-site {
+  color: var(--skyway-text);
+  background: var(--background);
+}
+.skyway-site ::selection {
+  color: #0a0a0a;
+  background: var(--skyway-accent);
+}
+.sw-nav {
+  width: min(900px, calc(100% - 40px));
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 24px;
+  border: 1px solid var(--skyway-border);
+  border-radius: 50px;
+  background: #0a0a0ad9;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 32px #0002;
+}
+.sw-nav > .sw-brand {
+  font-size: 18px;
+  letter-spacing: 0.16em;
+}
+.sw-nav nav {
+  gap: 28px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+.sw-nav a:hover {
+  color: var(--skyway-accent);
+}
+.sw-hero h1,
+.sw-hero h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.sw-hero h1 {
+  max-width: 1100px;
+  margin-inline: 20px;
+  font-size: clamp(58px, 8.5vw, 120px);
+  text-wrap: balance;
+}
+.sw-hero h2 {
+  font-size: clamp(36px, 4vw, 54px);
+}
+.sw-hero button {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 24px;
+  box-shadow: none;
+}
+.sw-hero button:first-child {
+  background: var(--skyway-accent);
+  color: #0a0a0a;
+}
+.sw-hero button:first-child:hover {
+  background: var(--skyway-accent-hover);
+}
+.sw-hero h1 + p {
+  color: #fafaf7c9;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+}
+.sw-window-caption {
+  max-width: 400px;
+}
+.sw-main-content {
+  background: var(--background);
+}
+.sw-booking-panel {
+  background: #141414;
+  border: 1px solid var(--skyway-border);
+  color: var(--skyway-text);
+  box-shadow: 0 25px 60px #0005;
+  border-radius: 20px;
+}
+.sw-booking-panel > div:first-child {
+  border-color: var(--skyway-border);
+}
+.sw-booking-panel > div:first-child > button {
+  color: var(--skyway-text-muted);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.sw-booking-panel > div:first-child > button:first-child {
+  color: var(--skyway-accent);
+  border-color: var(--skyway-accent);
+}
+.sw-booking-panel label {
+  color: var(--skyway-text-muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.sw-booking-panel input,
+.sw-booking-panel select {
+  background: #0a0a0a;
+  border-color: var(--skyway-border);
+  color: var(--skyway-text);
+  font-size: 13px;
+  font-weight: 400;
+}
+.sw-booking-panel input::placeholder {
+  color: var(--skyway-text-muted);
+}
+.sw-booking-panel input:focus,
+.sw-booking-panel select:focus {
+  --tw-ring-color: var(--skyway-accent);
+}
+.sw-booking-panel select option {
+  background: #141414;
+}
+.sw-booking-panel button.group {
+  background: var(--skyway-accent);
+  color: #0a0a0a;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+.sw-booking-panel button.group:hover {
+  background: var(--skyway-accent-hover);
+}
+[data-kinetic-intro] {
+  position: relative;
+  isolation: isolate;
+  margin-top: 30px;
+  padding-top: 45px;
+}
+[data-kinetic-intro]::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 600px;
+  max-width: 100vw;
+  height: 450px;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, #e8ff3a0d, transparent 65%);
+  pointer-events: none;
+}
+[data-kinetic-intro] > div {
+  background: linear-gradient(135deg, #ffffff08, transparent);
+  color: var(--skyway-text-muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border-color: var(--skyway-border);
+  padding: 9px 18px;
+  margin-bottom: 24px;
+  font-size: 11px;
+}
+[data-kinetic-intro] h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(56px, 6.5vw, 90px);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  background: linear-gradient(130deg, #fafaf7 25%, #fafaf780);
+  color: transparent;
+  background-clip: text;
+  margin-bottom: 22px;
+}
+[data-kinetic-intro] > p {
+  color: var(--skyway-text-muted);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 620px;
+  margin-bottom: 60px;
+  letter-spacing: -0.025em;
+}
+@media (max-width: 767px) {
+  .sw-nav {
+    top: 14px;
+    padding: 16px 20px;
+    min-height: 54px;
+  }
+  .sw-hero h1 + p {
+    font-size: 15px;
+    max-width: 400px;
+  }
+  .sw-window-caption {
+    left: 24px;
+    right: 24px;
+    bottom: 40px;
+    margin-left: auto;
+    max-width: 340px;
+  }
+  .sw-window-caption > p {
+    font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+  .sw-hero h1 {
+    font-size: 64px;
+  }
+  .sw-hero button {
+    font-size: 12px;
+    padding: 13px 18px;
+  }
+  .sw-hero h1 ~ div {
+    gap: 12px;
+  }
+  [data-kinetic-intro] > p {
+    font-size: 14px;
+  }
+  .sw-booking-panel > div:first-child {
+    gap: 22px;
+  }
+  .sw-booking-panel > div:first-child > button {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-explorer * {
+    transition: none !important;
+  }
+}
+.sw-mobile-navigation {
+  display: none;
+}
+.sw-mobile-navigation > button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 30px;
+  color: var(--skyway-text);
+  cursor: pointer;
+}
+.sw-mobile-navigation > button:focus-visible {
+  outline: 2px solid var(--skyway-accent);
+  border-radius: 6px;
+  outline-offset: 3px;
+}
+.sw-nav .sw-mobile-navigation > nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 15px 22px;
+  background: #111;
+  border: 1px solid var(--skyway-border);
+  border-radius: 22px;
+  box-shadow: 0 18px 45px #0006;
+}
+.sw-mobile-navigation nav > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: -0.025em;
+  color: var(--skyway-text-secondary);
+}
+.sw-mobile-navigation nav > a + a {
+  border-top: 1px solid var(--skyway-border);
+}
+.sw-mobile-navigation nav svg {
+  color: var(--skyway-accent);
+}
+@media (max-width: 767px) {
+  .sw-mobile-navigation {
+    display: block;
+  }
+  .sw-nav {
+    padding-block: 11px;
+  }
+}

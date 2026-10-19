@@ -1,6 +1,6 @@
-/* Continuation of the original slate-and-gold Skyway landing page. */
+/* Kinetic-inspired travel sections; the opening GSAP scene remains independent. */
 .skyway-continuation {
-  --sw-gold: var(--skyway-gold);
+  --sw-accent: var(--skyway-accent);
   color: var(--skyway-text);
   padding-top: 12px;
 }
@@ -15,19 +15,21 @@
 }
 .skyway-continuation a:focus-visible,
 .skyway-continuation summary:focus-visible {
-  outline: 2px solid var(--sw-gold);
+  outline: 2px solid var(--sw-accent);
   outline-offset: 6px;
   border-radius: 4px;
 }
 .skyway-continuation h2 {
-  font-size: clamp(36px, 4.3vw, 58px);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  font-weight: 700;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(48px, 5.5vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  text-wrap: balance;
 }
 .skyway-continuation h2 em {
   font-family: inherit;
-  font-style: normal;
+  font-style: italic;
   font-weight: inherit;
   color: inherit;
 }
@@ -35,7 +37,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--sw-gold);
+  color: var(--sw-accent);
   font-size: 10px;
   line-height: 1.5;
   font-weight: 600;
@@ -51,8 +53,8 @@
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-size: 12px;
-  color: var(--skyway-gold);
+  font-size: 14px;
+  color: var(--skyway-accent);
 }
 .sw-link svg {
   transition: transform 0.2s;
@@ -74,10 +76,10 @@
   align-items: center;
   gap: 9px;
   color: var(--skyway-text-secondary);
-  font-size: 12px;
+  font-size: 14px;
 }
 .sw-collection-heading svg {
-  color: var(--sw-gold);
+  color: var(--sw-accent);
 }
 .sw-collection-count {
   font-size: 9px;
@@ -86,32 +88,14 @@
 }
 .sw-collection-count > span {
   margin-left: 18px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   letter-spacing: 1px;
 }
-.sw-destination-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px;
-}
-.sw-destination-photo {
-  position: relative;
-  height: 390px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--skyway-surface);
-}
-.sw-destination-photo > img {
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.sw-destination-card:hover .sw-destination-photo > img {
-  transform: scale(1.05);
-}
+
 .sw-photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, #020617d9, #02061705 70%);
+  background: linear-gradient(0deg, #0a0a0ad9, #0a0a0a05 70%);
 }
 .sw-destination-category {
   position: absolute;
@@ -124,36 +108,11 @@
   border: 1px solid #ffffff25;
   border-radius: 50px;
   backdrop-filter: blur(12px);
-  background: #02061750;
+  background: #0a0a0a50;
   font-size: 9px;
   color: var(--skyway-text);
 }
-.sw-card-number {
-  position: absolute;
-  top: 29px;
-  right: 20px;
-  font-size: 9px;
-  color: #ffffffb0;
-}
-.sw-destination-title {
-  position: absolute;
-  bottom: 27px;
-  left: 25px;
-}
-.sw-destination-title > p {
-  text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--skyway-text);
-  margin-bottom: 7px;
-}
-.sw-destination-title h3 {
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  font-family: inherit;
-  font-size: 44px;
-  line-height: 1.1;
-}
+
 .sw-round-arrow {
   position: absolute;
   right: 23px;
@@ -168,39 +127,7 @@
     background 0.2s,
     border-color 0.2s;
 }
-.sw-destination-card:hover .sw-round-arrow {
-  background: var(--sw-gold);
-  border-color: var(--sw-gold);
-  color: var(--background);
-}
-.sw-destination-info {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 15px;
-  padding-top: 20px;
-}
-.sw-destination-info > div:first-child > p {
-  font-size: 11px;
-  color: var(--skyway-text-secondary);
-  line-height: 1.8;
-  max-width: 225px;
-}
-.sw-destination-info > div:first-child > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 9px;
-  color: var(--skyway-text-muted);
-  margin-top: 10px;
-}
-.sw-destination-info i {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--skyway-text-muted);
-  margin-inline: 3px;
-}
+
 .sw-fare {
   text-align: right;
   flex-shrink: 0;
@@ -213,7 +140,7 @@
 }
 .sw-fare strong {
   font-size: 21px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   font-weight: 600;
 }
 .sw-collection-footer {
@@ -244,7 +171,7 @@
 .sw-experience-photo {
   position: relative;
   height: 540px;
-  border-radius: 130px 14px 14px 14px;
+  border-radius: 24px;
   background: var(--skyway-surface);
 }
 .sw-experience-photo > img {
@@ -261,7 +188,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
 }
 .sw-photo-caption > div {
   font-size: 8px;
@@ -282,7 +209,7 @@
   width: 112px;
   height: 112px;
   border: 7px solid var(--skyway-surface-deep);
-  background: var(--skyway-gold);
+  background: var(--skyway-accent);
   color: var(--skyway-surface);
   border-radius: 50%;
   display: flex;
@@ -299,7 +226,7 @@
 }
 .sw-experience-copy > p:not(.sw-label) {
   color: var(--skyway-text-muted);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.9;
   margin-top: 25px;
   max-width: 395px;
@@ -318,24 +245,24 @@
 .sw-benefits svg {
   width: 20px;
   height: 20px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   stroke-width: 1.3;
 }
 .sw-benefits strong {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .sw-benefits small {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--skyway-text-muted);
   margin-top: 6px;
 }
 .sw-outline-button {
-  border-color: color-mix(in srgb, var(--skyway-gold) 30%, transparent);
-  color: var(--skyway-gold);
-  font-size: 11px;
+  border-color: color-mix(in srgb, var(--skyway-accent) 30%, transparent);
+  color: var(--skyway-accent);
+  font-size: 13px;
 }
 .sw-cabins {
   padding-block: 100px;
@@ -350,7 +277,7 @@
 }
 .sw-section-heading > p {
   color: var(--skyway-text-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.9;
   margin-bottom: 5px;
 }
@@ -358,7 +285,7 @@
   gap: 36px;
 }
 .sw-cabin-tabs button {
-  font-size: 12px;
+  font-size: 14px;
 }
 .sw-cabin-panel {
   display: grid;
@@ -439,14 +366,14 @@
   margin-bottom: 18px;
 }
 .sw-cabin-copy h3 {
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.025em;
-  font-size: 33px;
-  font-family: inherit;
+  font-size: 42px;
+  font-family: var(--font-display), Georgia, serif;
   line-height: 1.2;
 }
 .sw-cabin-copy > p:not(.sw-label) {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.9;
   color: var(--skyway-text-muted);
   margin-top: 20px;
@@ -462,10 +389,10 @@
   align-items: center;
   gap: 9px;
   color: var(--skyway-text-secondary);
-  font-size: 11px;
+  font-size: 13px;
 }
 .sw-cabin-copy li svg {
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
 }
 .sw-cabin-copy > small {
   display: block;
@@ -496,7 +423,7 @@
 .sw-promises svg {
   width: 23px;
   height: 23px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   stroke-width: 1.2;
   margin-bottom: 20px;
 }
@@ -505,7 +432,7 @@
   font-weight: 600;
 }
 .sw-promises p {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.9;
   color: var(--skyway-text-muted);
   max-width: 270px;
@@ -519,11 +446,11 @@
   align-items: center;
   gap: 10px;
   color: var(--skyway-text-muted);
-  font-size: 11px;
+  font-size: 13px;
   margin-bottom: 6px;
 }
 .sw-journal-note svg {
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
 }
 .sw-journal-feature {
   display: block;
@@ -541,7 +468,7 @@
   transform: scale(1.035);
 }
 .sw-journal-feature .sw-photo-overlay {
-  background: linear-gradient(0deg, #020617e0, #02061710 85%);
+  background: linear-gradient(0deg, #0a0a0ae0, #0a0a0a10 85%);
 }
 .sw-journal-category {
   position: absolute;
@@ -559,14 +486,14 @@
 .sw-journal-copy > p {
   font-size: 8px;
   letter-spacing: 2px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   margin-bottom: 14px;
 }
 .sw-journal-copy h3 {
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.025em;
-  font-family: inherit;
-  font-size: 45px;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 64px;
   line-height: 1.15;
   letter-spacing: -0.025em;
   margin-bottom: 25px;
@@ -589,10 +516,10 @@
   padding-block: 100px;
 }
 .sw-faq h2 {
-  font-size: 44px;
+  font-size: 60px;
 }
 .sw-faq > div > p:not(.sw-label) {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--skyway-text-muted);
   margin-top: 22px;
 }
@@ -610,7 +537,7 @@
   gap: 15px;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--skyway-text-secondary);
 }
 .sw-faq-items summary::-webkit-details-marker {
@@ -618,7 +545,7 @@
 }
 .sw-faq-items summary svg {
   flex-shrink: 0;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   transition: transform 0.2s;
 }
 .sw-faq-items details[open] summary svg {
@@ -626,7 +553,7 @@
 }
 .sw-faq-items details > p {
   color: var(--skyway-text-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.9;
   padding-bottom: 24px;
   padding-right: 22px;
@@ -637,28 +564,28 @@
   align-items: center;
   gap: 35px;
   padding: 45px;
-  border: 1px solid color-mix(in srgb, var(--skyway-gold) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--skyway-accent) 20%, transparent);
   border-radius: 16px;
   background:
     radial-gradient(
       ellipse at 0% 0%,
-      color-mix(in srgb, var(--skyway-gold) 7%, transparent),
+      color-mix(in srgb, var(--skyway-accent) 7%, transparent),
       transparent 60%
     ),
     var(--skyway-surface);
   overflow: hidden;
 }
 .sw-cta h2 {
-  font-size: 42px;
+  font-size: 60px;
 }
 .sw-cta .sw-label {
   font-size: 8px;
   margin-bottom: 15px;
 }
-.sw-gold-button {
+.sw-accent-button {
   margin-left: auto;
   padding-inline: 25px;
-  font-size: 11px;
+  font-size: 13px;
   z-index: 1;
 }
 .sw-cta-orbit {
@@ -667,7 +594,7 @@
   display: grid;
   place-items: center;
   position: relative;
-  border: 1px solid color-mix(in srgb, var(--skyway-gold) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--skyway-accent) 10%, transparent);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -675,7 +602,7 @@
   width: 76px;
   height: 76px;
   stroke-width: 0.5;
-  color: color-mix(in srgb, var(--skyway-gold) 45%, transparent);
+  color: color-mix(in srgb, var(--skyway-accent) 45%, transparent);
 }
 .sw-cta-orbit > svg:last-child {
   position: absolute;
@@ -683,7 +610,7 @@
   right: -1px;
   width: 24px;
   stroke-width: 1;
-  color: color-mix(in srgb, var(--skyway-gold) 70%, transparent);
+  color: color-mix(in srgb, var(--skyway-accent) 70%, transparent);
   transform: rotate(-20deg);
 }
 .sw-cta-decoration {
@@ -692,7 +619,7 @@
   right: 0;
   width: 240px;
   height: 240px;
-  color: color-mix(in srgb, var(--skyway-gold) 3%, transparent);
+  color: color-mix(in srgb, var(--skyway-accent) 3%, transparent);
   stroke-width: 0.5;
 }
 .sw-footer {
@@ -713,11 +640,11 @@
   letter-spacing: 4px;
 }
 .sw-footer-brand svg {
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   stroke-width: 1.4;
 }
 .sw-footer-main > div:first-child > p {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--skyway-text-muted);
   line-height: 1.9;
   margin-top: 18px;
@@ -731,30 +658,30 @@
 .sw-footer-main nav > span {
   font-size: 9px;
   letter-spacing: 1.5px;
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   margin-bottom: 7px;
 }
 .sw-footer-main nav > a {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--skyway-text-muted);
   transition: color 0.2s;
 }
 .sw-footer-main nav > a:hover {
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
 }
 .sw-footer-note {
   border-left: 1px solid #ffffff0d;
   padding-left: 30px;
 }
 .sw-footer-note > svg {
-  color: var(--skyway-gold);
+  color: var(--skyway-accent);
   stroke-width: 1;
   margin-bottom: 12px;
 }
 .sw-footer-note p {
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.025em;
-  font-family: inherit;
+  font-family: var(--font-display), Georgia, serif;
   font-size: 19px;
   line-height: 1.5;
   color: var(--skyway-text-secondary);
@@ -788,15 +715,6 @@
   scroll-margin-top: 105px;
 }
 @media (max-width: 1000px) {
-  .sw-destination-grid {
-    gap: 18px;
-  }
-  .sw-destination-photo {
-    height: 340px;
-  }
-  .sw-destination-info {
-    flex-direction: column;
-  }
   .sw-fare {
     display: flex;
     gap: 7px;
@@ -815,7 +733,7 @@
     padding: 35px;
   }
   .sw-cabin-copy h3 {
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: -0.025em;
     font-size: 29px;
   }
@@ -830,7 +748,7 @@
     padding: 35px;
   }
   .sw-cta h2 {
-    font-size: 35px;
+    font-size: 48px;
   }
   .sw-cta-orbit {
     width: 80px;
@@ -855,22 +773,7 @@
   .sw-collection-count {
     display: none;
   }
-  .sw-destination-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-  }
-  .sw-destination-card:last-child {
-    grid-column: 1 / -1;
-  }
-  .sw-destination-card:last-child .sw-destination-photo {
-    height: 330px;
-  }
-  .sw-destination-card:last-child .sw-destination-info {
-    flex-direction: row;
-  }
-  .sw-destination-card:last-child .sw-fare {
-    display: block;
-  }
+
   .sw-experience {
     margin-top: 70px;
     padding-block: 65px;
@@ -880,7 +783,7 @@
   }
   .sw-experience-photo {
     height: 500px;
-    border-top-left-radius: 90px;
+    border-top-left-radius: 24px;
   }
   .sw-photo-seal {
     width: 90px;
@@ -902,7 +805,7 @@
     font-size: 9px;
   }
   .sw-experience-copy > p:not(.sw-label) {
-    font-size: 11px;
+    font-size: 13px;
   }
   .sw-label {
     font-size: 8px;
@@ -930,12 +833,12 @@
     padding: 28px;
   }
   .sw-cabin-copy h3 {
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: -0.025em;
     font-size: 27px;
   }
   .sw-cabin-copy > p:not(.sw-label) {
-    font-size: 11px;
+    font-size: 13px;
   }
   .sw-window {
     width: 160px;
@@ -966,13 +869,13 @@
     gap: 40px;
   }
   .sw-faq h2 {
-    font-size: 38px;
+    font-size: 50px;
   }
   .sw-cta-orbit {
     display: none;
   }
   .sw-cta h2 {
-    font-size: 33px;
+    font-size: 42px;
   }
   .sw-footer-bottom {
     font-size: 8px;
@@ -987,29 +890,12 @@
     padding-top: 0;
   }
   .skyway-continuation h2 {
-    font-size: 39px;
+    font-size: 50px;
   }
   .sw-collection-heading > span:first-child {
     font-size: 10px;
   }
-  .sw-destination-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .sw-destination-card:last-child {
-    grid-column: auto;
-  }
-  .sw-destination-photo,
-  .sw-destination-card:last-child .sw-destination-photo {
-    height: 380px;
-  }
-  .sw-destination-info {
-    flex-direction: row;
-    gap: 12px;
-  }
-  .sw-destination-info > div:first-child > p {
-    font-size: 11px;
-  }
+
   .sw-fare {
     display: block;
   }
@@ -1051,10 +937,10 @@
     font-size: 10px;
   }
   .sw-experience-copy > p:not(.sw-label) {
-    font-size: 12px;
+    font-size: 14px;
   }
   .sw-benefits strong {
-    font-size: 12px;
+    font-size: 14px;
   }
   .sw-benefits small {
     font-size: 10px;
@@ -1068,7 +954,7 @@
     gap: 20px;
   }
   .sw-section-heading > p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .sw-cabins {
     padding-block: 55px;
@@ -1095,12 +981,12 @@
     padding: 30px 25px;
   }
   .sw-cabin-copy h3 {
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: -0.025em;
-    font-size: 31px;
+    font-size: 40px;
   }
   .sw-cabin-copy > p:not(.sw-label) {
-    font-size: 12px;
+    font-size: 14px;
   }
   .sw-promises {
     grid-template-columns: 1fr;
@@ -1122,7 +1008,7 @@
     font-size: 17px;
   }
   .sw-promises p {
-    font-size: 12px;
+    font-size: 14px;
     max-width: 100%;
   }
   .sw-journal {
@@ -1150,9 +1036,9 @@
     letter-spacing: 1.2px;
   }
   .sw-journal-copy h3 {
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: -0.025em;
-    font-size: 34px;
+    font-size: 45px;
   }
   .sw-journal-copy .sw-link {
     font-size: 10px;
@@ -1163,11 +1049,11 @@
     padding-block: 55px;
   }
   .sw-faq-items summary {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
   }
   .sw-faq-items details > p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .sw-cta {
     flex-direction: column;
@@ -1176,13 +1062,13 @@
     gap: 25px;
   }
   .sw-cta h2 {
-    font-size: 35px;
+    font-size: 48px;
   }
   .sw-cta .sw-label {
     font-size: 7px;
     letter-spacing: 1.4px;
   }
-  .sw-gold-button {
+  .sw-accent-button {
     margin-left: 0;
   }
   .sw-footer {
@@ -1216,5 +1102,188 @@
   .skyway-continuation *::before,
   .skyway-continuation *::after {
     transition: none !important;
+  }
+}
+
+/* Destination names double as a keyboard and touch accessible image selector. */
+.sw-explorer {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+  padding-block: 30px;
+}
+.sw-explorer-list > button {
+  display: grid;
+  grid-template-columns: 25px 1fr 30px;
+  align-items: center;
+  column-gap: 17px;
+  width: 100%;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--skyway-border);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #737373;
+}
+.sw-explorer-list > button[aria-pressed="true"] {
+  color: var(--skyway-text);
+}
+.sw-explorer-list > button[aria-pressed="true"] .sw-explorer-name {
+  transform: translateX(10px);
+}
+.sw-explorer-list > button[aria-pressed="true"] > svg {
+  color: var(--skyway-accent);
+  transform: rotate(45deg);
+}
+.sw-explorer-index {
+  align-self: start;
+  margin-top: 10px;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.sw-explorer-name {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(56px, 6.5vw, 94px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  transition: transform 0.4s;
+}
+.sw-explorer-list > button > svg {
+  width: 26px;
+  height: 26px;
+  transition:
+    transform 0.4s,
+    color 0.4s;
+}
+.sw-explorer-country {
+  grid-column: 2;
+  font-size: 11px;
+  margin-top: 5px;
+}
+.sw-explorer-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--skyway-text-muted);
+  font-size: 11px;
+  margin-top: 30px;
+}
+.sw-explorer-hint svg {
+  color: var(--skyway-accent);
+}
+.sw-explorer-images {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--skyway-surface);
+  isolation: isolate;
+}
+.sw-explorer-images > img {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.07);
+  transition:
+    opacity 0.6s ease,
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.sw-explorer-images > img.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.sw-explorer-image-label {
+  position: absolute;
+  bottom: 30px;
+  left: 27px;
+}
+.sw-explorer-image-label > span {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+  color: #ffffffb0;
+}
+.sw-explorer-image-label > strong {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+.sw-explorer-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+}
+.sw-explorer-details p {
+  font-size: 12px;
+  color: var(--skyway-text-secondary);
+  line-height: 1.8;
+  max-width: 250px;
+}
+.sw-explorer-details > div:first-child > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  color: var(--skyway-text-muted);
+  margin-top: 8px;
+}
+.sw-explorer-details i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-inline: 2px;
+}
+.sw-footer {
+  position: relative;
+  isolation: isolate;
+}
+.sw-footer::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  width: 100%;
+  height: 240px;
+  bottom: -90px;
+  background: radial-gradient(ellipse at 50% 100%, #e8ff3a12, transparent 65%);
+}
+@media (max-width: 800px) {
+  .sw-explorer {
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .sw-explorer-name {
+    font-size: 62px;
+  }
+  .sw-explorer-list > button {
+    column-gap: 10px;
+    grid-template-columns: 20px 1fr 23px;
+  }
+}
+@media (max-width: 600px) {
+  .sw-explorer {
+    grid-template-columns: 1fr;
+    padding-top: 0;
+    gap: 30px;
+  }
+  .sw-explorer-name {
+    font-size: 64px;
+  }
+  .sw-explorer-list > button {
+    padding-block: 16px;
+  }
+  .sw-explorer-hint {
+    margin-top: 20px;
+  }
+  .sw-explorer-images {
+    aspect-ratio: 4 / 4.5;
+  }
+  .sw-explorer-details p {
+    font-size: 11px;
   }
 }

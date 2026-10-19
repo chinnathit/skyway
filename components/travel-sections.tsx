@@ -1,9 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { DestinationExplorer } from "@/components/destination-explorer";
 import {
   ArrowDown,
-  ArrowRight,
   ArrowUpRight,
   Check,
   ChevronDown,
@@ -11,7 +15,6 @@ import {
   Globe2,
   Headphones,
   Leaf,
-  MapPin,
   MoveUpRight,
   Plane,
   ShieldCheck,
@@ -21,7 +24,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cabins, destinations, travelQuestions } from "@/lib/travel-content";
+import { cabins, travelQuestions } from "@/lib/travel-content";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -33,8 +36,49 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export function TravelSections() {
+  const sectionsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const headings = sectionsRef.current?.querySelectorAll(
+          ".sw-section-heading, .sw-experience-copy, .sw-promises > div, .sw-cta > div:not(.sw-cta-orbit)",
+        );
+        headings?.forEach((heading) => {
+          gsap.from(heading, {
+            y: 30,
+            opacity: 0,
+            filter: "blur(6px)",
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: { trigger: heading, start: "top 92%", once: true },
+          });
+        });
+        gsap.fromTo(
+          ".sw-journal-feature > img",
+          { yPercent: -6, scale: 1.15 },
+          {
+            yPercent: 6,
+            scale: 1.15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".sw-journal-feature",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          },
+        );
+      });
+      return () => media.revert();
+    },
+    { scope: sectionsRef },
+  );
+
   return (
-    <div className="skyway-continuation">
+    <div ref={sectionsRef} className="skyway-continuation">
       <section
         className="sw-container sw-destinations"
         aria-label="Featured destinations"
@@ -47,50 +91,7 @@ export function TravelSections() {
             THE COLLECTION <span>01 — 03</span>
           </span>
         </div>
-        <div className="sw-destination-grid">
-          {destinations.map((destination, index) => (
-            <a
-              key={destination.city}
-              href="#book"
-              className="sw-destination-card"
-            >
-              <div className="sw-destination-photo">
-                <Image
-                  src={destination.image}
-                  alt={destination.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
-                />
-                <div className="sw-photo-overlay" />
-                <span className="sw-destination-category">
-                  <MapPin size={12} />
-                  {destination.category}
-                </span>
-                <span className="sw-card-number">0{index + 1}</span>
-                <div className="sw-destination-title">
-                  <p>{destination.country}</p>
-                  <h3>{destination.city}</h3>
-                </div>
-                <span className="sw-round-arrow">
-                  <ArrowUpRight size={21} />
-                </span>
-              </div>
-              <div className="sw-destination-info">
-                <div>
-                  <p>{destination.description}</p>
-                  <span>
-                    JFK <ArrowRight size={11} /> {destination.airport} <i />{" "}
-                    Return · Economy
-                  </span>
-                </div>
-                <div className="sw-fare">
-                  <small>from USD</small>
-                  <strong>${destination.price}</strong>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
+        <DestinationExplorer />
         <div className="sw-collection-footer">
           <p>
             Illustrative routes and fares. Your next chapter is yours to
@@ -347,7 +348,7 @@ export function TravelSections() {
             <em>Make it your own.</em>
           </h2>
         </div>
-        <Button asChild className="sw-gold-button">
+        <Button asChild className="sw-accent-button">
           <a href="#book">
             Begin your journey <ArrowUpRight />
           </a>

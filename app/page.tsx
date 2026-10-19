@@ -6,7 +6,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { TravelSections } from '@/components/travel-sections';
+import { MobileNavigation } from '@/components/mobile-navigation';
 import './travel.css';
+import './kinetic.css';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -64,33 +66,34 @@ export default function Home() {
   }, { scope: containerRef });
 
   return (
-    <div className="relative w-full overflow-hidden bg-slate-900 text-white font-sans selection:bg-slate-800">
+    <div className="skyway-site relative w-full overflow-hidden bg-background text-white font-sans selection:bg-[var(--skyway-accent)]/30">
       
-      <header className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[2px]">
-        <div className="text-2xl font-bold tracking-[0.25em] text-white cursor-pointer hover:text-white/80 transition-colors">
+      <header className="sw-nav fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[2px]">
+        <a href="#" aria-label="Skyway home" className="sw-brand text-2xl font-bold tracking-[0.25em] text-white cursor-pointer hover:text-white/80 transition-colors">
           SKYWAY
-        </div>
+        </a>
         <nav className="hidden md:flex gap-10 text-xs uppercase tracking-[0.15em] font-semibold">
           <a href="#experience" className="text-zinc-200 hover:text-white transition-colors relative group">
             Experience
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--skyway-accent)] transition-all group-hover:w-full"></span>
           </a>
           <a href="#fleet" className="text-zinc-200 hover:text-white transition-colors relative group">
             Fleet
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--skyway-accent)] transition-all group-hover:w-full"></span>
           </a>
           <a href="#destinations" className="text-zinc-200 hover:text-white transition-colors relative group">
             Destinations
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--skyway-accent)] transition-all group-hover:w-full"></span>
           </a>
           <a href="#book" className="text-zinc-200 hover:text-white transition-colors relative group">
             Book
-            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#d4af37] transition-all group-hover:w-full"></span>
+            <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--skyway-accent)] transition-all group-hover:w-full"></span>
           </a>
         </nav>
+        <MobileNavigation />
       </header>
 
-      <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
+      <section ref={containerRef} className="sw-hero relative h-screen w-full overflow-hidden bg-black">
         
         <div className="absolute inset-0 z-10">
           <Image
@@ -119,7 +122,7 @@ export default function Home() {
 
         <div
           ref={textBlockARef}
-          className="absolute bottom-12 right-12 md:right-24 z-30 flex flex-col items-end text-right max-w-sm pointer-events-none"
+          className="sw-window-caption absolute bottom-12 right-12 md:right-24 z-30 flex flex-col items-end text-right max-w-sm pointer-events-none"
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-wide text-white drop-shadow-xl">
             The Journey Begins
@@ -140,20 +143,20 @@ export default function Home() {
             Experience the ultimate comfort and luxury on your next journey around the globe.
           </p>
           <div className="mt-10 flex gap-6">
-            <button className="px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b5952f] hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg shadow-[#d4af37]/40">
+            <button onClick={() => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 bg-gradient-to-r from-[var(--skyway-accent)] to-[var(--skyway-accent)] hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg shadow-[var(--skyway-accent)]/40">
               Book a Flight
             </button>
-            <button className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg">
+            <button onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 hover:scale-105 text-white font-bold rounded-full transition-transform shadow-lg">
               Destinations
             </button>
           </div>
         </div>
       </section>
 
-      <section className="relative z-40 w-full bg-slate-900 pb-32">
+      <section className="sw-main-content relative z-40 w-full bg-background pb-12">
         
         <div id="book" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative -top-16 md:-top-24">
-          <div className="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 flex flex-col gap-6 text-slate-900">
+          <div className="sw-booking-panel bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-6 md:p-8 flex flex-col gap-6 text-slate-900">
             
             <div className="flex items-center gap-8 border-b border-slate-100 pb-4 overflow-x-auto whitespace-nowrap">
               <button className="text-sm font-bold border-b-2 border-slate-900 pb-4 -mb-4 text-slate-900 tracking-wide">
@@ -229,7 +232,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col justify-end lg:col-span-1">
-                <button className="group w-full h-[52px] bg-gradient-to-r from-[#d4af37] to-[#b5952f] hover:from-[#c29f2f] hover:to-[#a38528] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#d4af37]/40 flex items-center justify-center gap-2 hover:scale-[1.02]">
+                <button className="group w-full h-[52px] bg-gradient-to-r from-[var(--skyway-accent)] to-[var(--skyway-accent)] hover:from-[var(--skyway-accent-hover)] hover:to-[var(--skyway-accent-hover)] text-white font-bold rounded-xl transition-all shadow-lg shadow-[var(--skyway-accent)]/40 flex items-center justify-center gap-2 hover:scale-[1.02]">
                   <span>Find Flights</span>
                   <svg
                     className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
@@ -251,8 +254,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div id="destinations" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
-          <div className="inline-block px-5 py-2 mb-8 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+        <div id="destinations" data-kinetic-intro className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center">
+          <div className="inline-block px-5 py-2 mb-8 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] text-[var(--skyway-accent)]">
             Exclusive Destinations
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
